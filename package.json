@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "casper": "^0.1.1",
+    "geojson-stream": "0.0.1",
     "spooky": "^0.2.5"
   }
 }

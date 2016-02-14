@@ -1,8 +1,8 @@
 var utils = require('utils')
 
 var casper = require('casper').create({
-    logLevel: 'debug',
-    verbose: true
+//    logLevel: 'debug',
+//    verbose: true
 });
 
 casper.on('remote.message', function(message) {
@@ -41,9 +41,10 @@ casper.waitForSelector('#MainContent_MainContent_cphMainContentArea_ucSearchType
 });
 
 casper.waitForSelector('#MainContent_MainContent_cphMainContentArea_ucSearchType_wzrdRealPropertySearch_ucDetailsSearch_dlstDetaisSearch', function() {
-    casper.evaluate(function() {
-        console.log('HERE');
+    var doc = casper.evaluate(function() {
+        return document;
     });
+    this.echo(doc.all[0].outerHTML)
 });
 
 casper.run();
