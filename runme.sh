@@ -1,9 +1,8 @@
-node index.js > /tmp/addr.ln
-
-exit
+#node index.js > /tmp/addr.ln
 
 mkdir results || true
-while read p; do
+
+while IFS='' read -r p || [[ -n "$p" ]]; do
     NUM=$(echo "$p" | jq -r '.number')
     STR=$(echo "$p" | jq -r '.street')
     FILE=$(echo "${NUM}_${STR}" | tr ' ' '_')
