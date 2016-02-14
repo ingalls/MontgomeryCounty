@@ -7,9 +7,11 @@ while read p; do
     FILE=$(echo "${NUM}_${STR}" | tr ' ' '_')
     if [[ ! -e results/$FILE ]]; then
         echo "creating $FILE"
-        casperjs script.js "$NUM" "$STR" > results/$FILE
+        echo "  casperjs scrape.js \"$NUM\" \"$STR\""
+        casperjs scrape.js "$NUM" "$STR" > results/$FILE
         echo "    DONE"
     else
         echo "Skipping $FILE"
     fi
+    sleep 4
 done < /tmp/addr.ln

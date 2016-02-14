@@ -5,6 +5,9 @@ var casper = require('casper').create({
 //    verbose: true
 });
 
+var num = casper.cli.args[0];
+var str = casper.cli.args[1];
+
 casper.on('remote.message', function(message) {
     this.echo(message, 'INFO');
 });
@@ -29,15 +32,15 @@ casper.start('http://sdat.dat.maryland.gov/RealProperty/Pages/default.aspx', fun
 });
 
 casper.waitForSelector('#MainContent_MainContent_cphMainContentArea_ucSearchType_wzrdRealPropertySearch_ucEnterData_txtStreenNumber', function() {
-    casper.evaluate(function() {
+    casper.evaluate(function(num, str) {
         var streetAddr = document.getElementById('MainContent_MainContent_cphMainContentArea_ucSearchType_wzrdRealPropertySearch_ucEnterData_txtStreenNumber');
         var streetName = document.getElementById('MainContent_MainContent_cphMainContentArea_ucSearchType_wzrdRealPropertySearch_ucEnterData_txtStreetName');
 
-        streetAddr.value = '19524';
-        streetName.value = 'Gallatin';
+        streetAddr.value = num.toString();
+        streetName.value = str.toString();
         
         var button = $('#MainContent_MainContent_cphMainContentArea_ucSearchType_wzrdRealPropertySearch_StepNavigationTemplateContainerID_btnStepNextButton').click();
-    });
+    }, num, str);
 });
 
 casper.waitForSelector('#MainContent_MainContent_cphMainContentArea_ucSearchType_wzrdRealPropertySearch_ucDetailsSearch_dlstDetaisSearch', function() {
