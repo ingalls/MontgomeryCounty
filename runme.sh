@@ -1,4 +1,6 @@
-#node index.js > /tmp/addr.ln
+node index.js > /tmp/addr.ln
+
+exit
 
 mkdir results || true
 while read p; do
