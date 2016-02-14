@@ -6,6 +6,10 @@ while read p; do
     STR=$(echo "$p" | jq -r '.street')
     FILE=$(echo "${NUM}_${STR}" | tr ' ' '_')
     if [[ ! -e results/$FILE ]]; then
-        casperjs script.js
+        echo "creating $FILE"
+        casperjs script.js "$NUM" "$STR" > results/$FILE
+        echo "    DONE"
+    else
+        echo "Skipping $FILE"
     fi
 done < /tmp/addr.ln
