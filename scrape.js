@@ -50,6 +50,7 @@ casper.waitWhileSelector('#MainContent_MainContent_cphMainContentArea_ucSearchTy
         return document;
     });
     casper.echo(doc.all[0].outerHTML)
+    casper.exit();
 });
 
 casper.run();
