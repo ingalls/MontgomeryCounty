@@ -12,6 +12,7 @@ casper.on('remote.message', function(message) {
     this.echo(message, 'INFO');
 });
 
+//Main Page
 casper.start('http://sdat.dat.maryland.gov/RealProperty/Pages/default.aspx', function() {
     var doc = this.evaluate(function() {
         try {
@@ -31,6 +32,7 @@ casper.start('http://sdat.dat.maryland.gov/RealProperty/Pages/default.aspx', fun
 
 });
 
+//Search Box
 casper.waitForSelector('#MainContent_MainContent_cphMainContentArea_ucSearchType_wzrdRealPropertySearch_ucEnterData_txtStreenNumber', function() {
     casper.evaluate(function(num, str) {
         var streetAddr = document.getElementById('MainContent_MainContent_cphMainContentArea_ucSearchType_wzrdRealPropertySearch_ucEnterData_txtStreenNumber');
@@ -43,11 +45,11 @@ casper.waitForSelector('#MainContent_MainContent_cphMainContentArea_ucSearchType
     }, num, str);
 });
 
-casper.waitForSelector('#MainContent_MainContent_cphMainContentArea_ucSearchType_wzrdRealPropertySearch_ucDetailsSearch_dlstDetaisSearch', function() {
+casper.waitWhileSelector('#MainContent_MainContent_cphMainContentArea_ucSearchType_wzrdRealPropertySearch_ucEnterData_txtStreenNumber', function() {
     var doc = casper.evaluate(function() {
         return document;
     });
-    this.echo(doc.all[0].outerHTML)
+    casper.echo(doc.all[0].outerHTML)
 });
 
 casper.run();
