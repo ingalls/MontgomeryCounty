@@ -1,6 +1,6 @@
-
 RESULTS=0
 LISTS=0
+BAD=0
 
 echo ""
 echo "Problematic Files"
@@ -11,11 +11,12 @@ for FILE in results/*; do
 
     if [[ $(grep -m1 -Eo "ucSearchResult" $FILE | wc -l) > 0 ]]; then OK=1 && LISTS=$(($LISTS+1)); fi
 
-    if [[ $OK != 1 ]]; then echo "- $FILE"; fi
+    if [[ $OK != 1 ]]; then echo "- $FILE" && BAD=$(($BAD+1)); fi
 done
 
 echo ""
 echo "Good Results: $RESULTS" 
 echo "List Results: $LISTS" #Addresses with more than one account #
+echo "Bad Results : $BAD"
 echo "-------------------"
 echo "Total       : $(ls results/ | wc -l)"

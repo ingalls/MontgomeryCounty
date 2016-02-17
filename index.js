@@ -19,6 +19,7 @@ s.on('data', function(data) {
     try {
         fs.statSync('./results/'+file);
     } catch(err) {
+        console.log('echo "results/'+file+'"');
         console.log('casperjs scrape.js "'+num+'" "'+str+'" > results/'+file);
         console.log('sleep 2');
     }
